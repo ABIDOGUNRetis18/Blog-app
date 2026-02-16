@@ -29,7 +29,8 @@ jobs:
           cd server
           npm install
 
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+      - name: 🚀 Deploy to Vercel
+        if: github.ref == 'refs/heads/main'
+        run: |
+              npm install -g vercel
+              vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
